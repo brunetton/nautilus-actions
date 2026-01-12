@@ -2,35 +2,6 @@
 	"actions": [
 		{
 			"type": "command",
-			"label": "🚀📱 Send to Pixel 5",
-			"command_line": "kdeconnect-cli -d ca478dd4_8848_4216_b5cf_8370fb0248ce --share %f && notify-send 'Success' 'OK' || notify-send 'Error' 'Failed to send file to Pixel 5'",
-			"use_shell": true,
-			"cwd": "%d",
-			"mimetypes": [
-				"!inode/directory"
-			]
-		},
-		{
-			"type": "command",
-			"label": "🖨️ Print with Phomemo",
-			"command_line": "/home/bruno/dev/Print-with-Phomemo-T02/print-with-T02.sh %f",
-			"use_shell": true,
-			"cwd": "%d",
-			"mimetypes": [
-				"image/*"
-			]
-		},
-		{
-			"type": "command",
-			"label": "✍️ Sign PDF",
-			"command_line": "/home/bruno/bin/pdf-sign \"%f\"",
-			"cwd": "%d",
-			"mimetypes": [
-				"application/pdf"
-			]
-		},
-		{
-			"type": "command",
 			"label": "🪄 Convert to webp - lossless",
 			"command_line": "mogrify -format webp -quality 100 %f",
 			"use_shell": true,
@@ -114,16 +85,6 @@
 			"type": "command",
 			"label": "❌ Remove exif data",
 			"command_line": "exiftool -all= %f",
-			"use_shell": true,
-			"cwd": "%d",
-			"mimetypes": [
-				"image/*"
-			]
-		},
-		{
-			"type": "command",
-			"label": "📸 Rename as today selfie",
-			"command_line": "exiftool -overwrite_original -all= -tagsfromfile @ \"-AllDates<now\" -imagewidth -imageheight %f; mv %f \"PXL_$(date +%Y%%m%%d_%H%%M%S%3N)\".%x",
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -289,17 +250,6 @@
 		},
 		{
 			"type": "command",
-			"label": "⚡ Remove empty dirs",
-			"command_line": "~/dev/dotfiles/scripts/remove_empty_dirs.py %f",
-			"use_shell": true,
-			"cwd": "%d",
-			"max_items": 1,
-			"mimetypes": [
-				"inode/directory"
-			]
-		},
-		{
-			"type": "command",
 			"label": "▶️◀️ Resize 1200px",
 			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"1200x1200>\" %d/%w-1200.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"1200>\" -path %d/resized_images %f; fi",
 			"use_shell": true,
@@ -417,14 +367,6 @@
 					"use_shell": true
 				}
 			]
-		},
-		{
-			"type": "command",
-			"label": "DEBUG - Test all place holders",
-			"command_line": "%O printf '%%s\\n' '#b' %b '#B' %B '#c' %c '#d' %d '#D' %D '#f' %f '#F' %F '#h' %h '#m' %m '#M' %M '#n' %n '#o' %o '#O' %O '#p' %p '#s' %s '#u' %u '#U' %U '#w' %w '#W' %W '#x' %x '#X' %X | zenity --title \"Test all place holders\" --text-info",
-			"use_shell": true,
-			"disabled": true
-		}
-	],
-	"debug": true
+		}	],
+	"debug": false
 }

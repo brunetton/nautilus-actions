@@ -1,0 +1,430 @@
+{
+	"actions": [
+		{
+			"type": "command",
+			"label": "🚀📱 Send to Pixel 5",
+			"command_line": "kdeconnect-cli -d ca478dd4_8848_4216_b5cf_8370fb0248ce --share %f && notify-send 'Success' 'OK' || notify-send 'Error' 'Failed to send file to Pixel 5'",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"!inode/directory"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🖨️ Print with Phomemo",
+			"command_line": "/home/bruno/dev/Print-with-Phomemo-T02/print-with-T02.sh %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "✍️ Sign PDF",
+			"command_line": "/home/bruno/bin/pdf-sign \"%f\"",
+			"cwd": "%d",
+			"mimetypes": [
+				"application/pdf"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to webp - lossless",
+			"command_line": "mogrify -format webp -quality 100 %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to webp - 80%",
+			"command_line": "mogrify -format webp -quality 80 %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to webp - 60%",
+			"command_line": "mogrify -format webp -quality 60 %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to webp - 30%",
+			"command_line": "mogrify -format webp -quality 30 %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to jpg - 80%",
+			"command_line": "mogrify -format jpg -quality 80 %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "⏬ Layer images (up down)",
+			"command_line": "convert %F -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"min_items": 2,
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "⏬ Layer images (up down) - REVERSED",
+			"command_line": "convert $(echo %F | tr ' ' '\n' | tac) -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"min_items": 2,
+			"use_shell": true,
+			"cwd": "%d"
+		},
+		{
+			"type": "command",
+			"label": "⏬ Layer images (2 by 2)",
+			"command_line": "convert %F -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"min_items": 2,
+			"max_items": 2,
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "❌ Remove exif data",
+			"command_line": "exiftool -all= %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "📸 Rename as today selfie",
+			"command_line": "exiftool -overwrite_original -all= -tagsfromfile @ \"-AllDates<now\" -imagewidth -imageheight %f; mv %f \"PXL_$(date +%Y%%m%%d_%H%%M%S%3N)\".%x",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to PNG (300 dpi)",
+			"command_line": "pdftoppm -png -r 300 %f %w",
+			"use_shell": false,
+			"cwd": "%d",
+			"mimetypes": [
+				"application/pdf"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🎥 Extract sound from video",
+			"command_line": "~/dev/nemo-actions/scripts/extract_sound.py %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"video/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🪄 Convert to PNG",
+			"command_line": "mogrify -format png %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "➡️ Convert to FLAC",
+			"command_line": "flac %b --best -o %w.flac && rm -f %b",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"audio/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "➡️ Convert to WAV",
+			"command_line": "out=%w.wav; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"audio/*"
+			]
+		},
+		{
+			"type": "menu",
+			"label": "➡️ aac",
+			"actions": [
+				{
+					"type": "command",
+					"label": "Convert audio to AAC 96k",
+					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+					"use_shell": true,
+					"cwd": "%d",
+					"max_items": 1,
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert audio to AAC 128k",
+					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 128k \"$out\"",
+					"use_shell": true,
+					"cwd": "%d",
+					"max_items": 1,
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert audio to AAC 192k",
+					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 192k \"$out\"",
+					"use_shell": true,
+					"cwd": "%d",
+					"max_items": 1,
+					"mimetypes": [
+						"audio/*"
+					]
+				}
+			]
+		},
+		{
+			"type": "menu",
+			"label": "➡️ mp3",
+			"actions": [
+				{
+					"type": "command",
+					"label": "Convert to mp3 - 96 kbps (< CD) - mono",
+					"command_line": "<scripts/bash_action.rb \"lame -V2 --abr 96 -a -m m {}\" %f>",
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert to mp3 - 96 kbps (< CD)",
+					"command_line": "lame -V2 --abr 96 %f %w.mp3",
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert to mp3 - 128 kbps (< CD)",
+					"command_line": "lame -V2 --abr 128 %f %w.mp3",
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert to mp3 - 192 kbps",
+					"command_line": "lame -V2 --abr 192 %f %w.mp3",
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"audio/*"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Convert to mp3 - 256 kbps",
+					"command_line": "lame -V2 --abr 256 %f %w.mp3",
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"audio/*"
+					]
+				}
+			]
+		},
+		{
+			"type": "command",
+			"label": "📄 New file...",
+			"command_line": "FN=$(zenity --entry --text \"Enter file name\"  --width 300) && touch \"${FN}\"",
+			"cwd": "%f",
+			"use_shell": true,
+			"max_items": 1,
+			"permissions": "read-write",
+			"filetypes": [
+				"directory"
+			]
+		},
+		{
+			"type": "command",
+			"label": "⚡ Remove empty dirs",
+			"command_line": "~/dev/dotfiles/scripts/remove_empty_dirs.py %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"max_items": 1,
+			"mimetypes": [
+				"inode/directory"
+			]
+		},
+		{
+			"type": "command",
+			"label": "▶️◀️ Resize 1200px",
+			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"1200x1200>\" %d/%w-1200.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"1200>\" -path %d/resized_images %f; fi",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "▶️◀️ Resize 1500px",
+			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"1500x1500>\" %d/%w-1500.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"1500>\" -path %d/resized_images %f; fi",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "▶️◀️ Resize 2000px",
+			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"2000x2000>\" %d/%w-2000.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"2000>\" -path %d/resized_images %f; fi",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "▶️◀️ Resize 70%",
+			"command_line": "convert %f -resize \"70%\" %d/%w-70pct.%x",
+			"use_shell": true,
+			"max_items": 1,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "▶️◀️ Resize 50%",
+			"command_line": "convert %f -resize \"50%\" %d/%w-50pct.%x",
+			"use_shell": true,
+			"max_items": 1,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "menu",
+			"label": "Folder Actions",
+			"actions": [
+				{
+					"type": "command",
+					"label": "Remove \"node modules\" dirs",
+					"command_line": "find %d -name node_modules -type d -prune -exec rm -rf '{}' +",
+					"use_shell": true,
+					"cwd": "%d",
+					"max_items": 1,
+					"mimetypes": [
+						"inode/directory"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Execute command here",
+					"command_line": "$(zenity --entry --text \"Enter command\" --title \"execute command in %f\" --width 800)",
+					"use_shell": true,
+					"cwd": "%f",
+					"max_items": 1,
+					"filetypes": [
+						"directory"
+					]
+				},
+				{
+					"type": "command",
+					"label": "Start HTTP server here",
+					"command_line": "gnome-terminal -t \"HTTP Server on %f\" -- python3 -m http.server --bind 127.0.0.1",
+					"cwd": "%f",
+					"max_items": 1,
+					"mimetypes": [
+						"inode/directory"
+					]
+				}
+			]
+		},
+		{
+			"type": "menu",
+			"label": "📝 Copy details",
+			"actions": [
+				{
+					"type": "command",
+					"label": "Copy full path (~/truc.pdf)",
+					"command_line": "echo -n %F | xclip -f -selection primary | xclip -selection clipboard",
+					"use_shell": true
+				},
+				{
+					"type": "command",
+					"label": "Copy basename (truc.pdf)",
+					"command_line": "echo -n %B | xclip -f -selection primary | xclip -selection clipboard",
+					"use_shell": true
+				},
+				{
+					"type": "command",
+					"label": "Copy path only (~/)",
+					"command_line": "echo -n %D | xclip -f -selection primary | xclip -selection clipboard",
+					"use_shell": true
+				},
+				{
+					"type": "command",
+					"label": "Copy URI",
+					"command_line": "echo -n %U | xclip -f -selection primary | xclip -selection clipboard",
+					"use_shell": true
+				}
+			]
+		},
+		{
+			"type": "command",
+			"label": "DEBUG - Test all place holders",
+			"command_line": "%O printf '%%s\\n' '#b' %b '#B' %B '#c' %c '#d' %d '#D' %D '#f' %f '#F' %F '#h' %h '#m' %m '#M' %M '#n' %n '#o' %o '#O' %O '#p' %p '#s' %s '#u' %u '#U' %U '#w' %w '#W' %W '#x' %x '#X' %X | zenity --title \"Test all place holders\" --text-info",
+			"use_shell": true,
+			"disabled": true
+		}
+	],
+	"debug": true
+}

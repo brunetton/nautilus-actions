@@ -1,4 +1,5 @@
 {
+	"$schema": "https://raw.githubusercontent.com/bassmanitram/actions-for-nautilus/refs/heads/main/configurator/actions-for-nautilus.schema.json",
 	"actions": [
 		{
 			"type": "command",
@@ -105,6 +106,16 @@
 			"type": "command",
 			"label": "🎥 Extract sound from video",
 			"command_line": "~/dev/nemo-actions/scripts/extract_sound.py %f",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"video/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🎥 Create GIF from video",
+			"command_line": "ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -367,6 +378,17 @@
 					"use_shell": true
 				}
 			]
-		}	],
-	"debug": false
+		},
+		{
+			"type": "command",
+			"label": "📥 Move last downloaded file here",
+			"command_line": "mv \"$(/bin/ls -tpd ~/Téléchargements/* | grep -v '/$' | head -n 1)\" %f",
+			"use_shell": true,
+			"max_items": 1,
+			"filetypes": [
+				"directory"
+			]
+		}
+	],
+	"debug": true
 }

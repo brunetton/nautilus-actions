@@ -96,7 +96,7 @@
 			"type": "command",
 			"label": "🪄 Convert to PNG (300 dpi)",
 			"command_line": "pdftoppm -png -r 300 %f %w",
-			"use_shell": false,
+			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
 				"application/pdf"

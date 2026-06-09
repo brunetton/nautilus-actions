@@ -114,6 +114,16 @@
 		},
 		{
 			"type": "command",
+			"label": "🎥 Convert to mp4",
+			"command_line": "ffmpeg -i %f -c:copy %w.mp4",
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"video/*"
+			]
+		},
+		{
+			"type": "command",
 			"label": "🎥 Create GIF from video",
 			"command_line": "ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
 			"use_shell": true,

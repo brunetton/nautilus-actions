@@ -124,6 +124,17 @@
 		},
 		{
 			"type": "command",
+			"label": "🔇 Remove audio (keep original file)",
+			"command_line": "ffmpeg -i %f -an -c:v copy %w-silent.%x",
+			"use_shell": true,
+			"cwd": "%d",
+			"max_items": 1,
+			"mimetypes": [
+				"video/*"
+			]
+		},
+		{
+			"type": "command",
 			"label": "🎥 Create GIF from video",
 			"command_line": "ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
 			"use_shell": true,

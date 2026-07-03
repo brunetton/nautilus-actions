@@ -58,6 +58,18 @@
 		},
 		{
 			"type": "command",
+			"label": "Extract images from PDF file",
+			"command_line": "pdfimages -p %f %d/",
+			"use_v1_interpolation": false,
+			"use_shell": true,
+			"cwd": "%d",
+			"max_items": 1,
+			"mimetypes": [
+				"application/pdf"
+			]
+		},
+		{
+			"type": "command",
 			"label": "⏬ Layer images (up down)",
 			"command_line": "convert %F -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
 			"use_v1_interpolation": false,
@@ -126,6 +138,18 @@
 			"type": "command",
 			"label": "🎥 Convert to mp4",
 			"command_line": "ffmpeg -i %f -c:copy %w.mp4",
+			"use_v1_interpolation": false,
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"video/*"
+			]
+		},
+		{
+			"type": "command",
+			"label": "🎥 Recompress to h264",
+			"command_line": "ffmpeg -i %f -c:v libx264 -crf 23 -c:a copy %w-h24.%x",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -288,6 +312,40 @@
 					"mimetypes": [
 						"audio/*"
 					]
+				}
+			]
+		},
+		{
+			"type": "menu",
+			"label": "🎥 Merge video and audio",
+			"actions": [
+				{
+					"type": "command",
+					"label": "🎥 => mkv",
+					"command_line": "~/dev/dotfiles/scripts/merge_video_and_audio.py %F",
+					"use_v1_interpolation": false,
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"video/*",
+						"audio/*"
+					],
+					"min_items": 2,
+					"max_items": 2
+				},
+				{
+					"type": "command",
+					"label": "🎥 => mp4",
+					"command_line": "~/dev/dotfiles/scripts/merge_video_and_audio.py -f mp4 %F",
+					"use_v1_interpolation": false,
+					"use_shell": true,
+					"cwd": "%d",
+					"mimetypes": [
+						"video/*",
+						"audio/*"
+					],
+					"min_items": 2,
+					"max_items": 2
 				}
 			]
 		},

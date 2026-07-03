@@ -5,6 +5,7 @@
 			"type": "command",
 			"label": "🪄 Convert to webp - lossless",
 			"command_line": "mogrify -format webp -quality 100 %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -15,6 +16,7 @@
 			"type": "command",
 			"label": "🪄 Convert to webp - 80%",
 			"command_line": "mogrify -format webp -quality 80 %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -25,6 +27,7 @@
 			"type": "command",
 			"label": "🪄 Convert to webp - 60%",
 			"command_line": "mogrify -format webp -quality 60 %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -35,6 +38,7 @@
 			"type": "command",
 			"label": "🪄 Convert to webp - 30%",
 			"command_line": "mogrify -format webp -quality 30 %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -45,6 +49,7 @@
 			"type": "command",
 			"label": "🪄 Convert to jpg - 80%",
 			"command_line": "mogrify -format jpg -quality 80 %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -55,6 +60,7 @@
 			"type": "command",
 			"label": "⏬ Layer images (up down)",
 			"command_line": "convert %F -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"use_v1_interpolation": false,
 			"min_items": 2,
 			"use_shell": true,
 			"cwd": "%d",
@@ -66,6 +72,7 @@
 			"type": "command",
 			"label": "⏬ Layer images (up down) - REVERSED",
 			"command_line": "convert $(echo %F | tr ' ' '\n' | tac) -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"use_v1_interpolation": false,
 			"min_items": 2,
 			"use_shell": true,
 			"cwd": "%d"
@@ -74,6 +81,7 @@
 			"type": "command",
 			"label": "⏬ Layer images (2 by 2)",
 			"command_line": "convert %F -background black -gravity center -append $(mktemp \"out-XXX.%x\")",
+			"use_v1_interpolation": false,
 			"min_items": 2,
 			"max_items": 2,
 			"use_shell": true,
@@ -86,6 +94,7 @@
 			"type": "command",
 			"label": "❌ Remove exif data",
 			"command_line": "exiftool -all= %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -96,6 +105,7 @@
 			"type": "command",
 			"label": "🪄 Convert to PNG (300 dpi)",
 			"command_line": "pdftoppm -png -r 300 %f %w",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -126,6 +136,7 @@
 			"type": "command",
 			"label": "🔇 Remove audio (keep original file)",
 			"command_line": "ffmpeg -i %f -an -c:v copy %w-silent.%x",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"max_items": 1,
@@ -137,6 +148,7 @@
 			"type": "command",
 			"label": "🎥 Create GIF from video",
 			"command_line": "ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -147,6 +159,7 @@
 			"type": "command",
 			"label": "🪄 Convert to PNG",
 			"command_line": "mogrify -format png %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -157,6 +170,7 @@
 			"type": "command",
 			"label": "➡️ Convert to FLAC",
 			"command_line": "flac %b --best -o %w.flac && rm -f %b",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -167,6 +181,7 @@
 			"type": "command",
 			"label": "➡️ Convert to WAV",
 			"command_line": "out=%w.wav; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -181,6 +196,7 @@
 					"type": "command",
 					"label": "Convert audio to AAC 96k",
 					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"max_items": 1,
@@ -192,6 +208,7 @@
 					"type": "command",
 					"label": "Convert audio to AAC 128k",
 					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 128k \"$out\"",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"max_items": 1,
@@ -203,6 +220,7 @@
 					"type": "command",
 					"label": "Convert audio to AAC 192k",
 					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 192k \"$out\"",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"max_items": 1,
@@ -220,6 +238,7 @@
 					"type": "command",
 					"label": "Convert to mp3 - 96 kbps (< CD) - mono",
 					"command_line": "<scripts/bash_action.rb \"lame -V2 --abr 96 -a -m m {}\" %f>",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"mimetypes": [
@@ -230,6 +249,7 @@
 					"type": "command",
 					"label": "Convert to mp3 - 96 kbps (< CD)",
 					"command_line": "lame -V2 --abr 96 %f %w.mp3",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"mimetypes": [
@@ -240,6 +260,7 @@
 					"type": "command",
 					"label": "Convert to mp3 - 128 kbps (< CD)",
 					"command_line": "lame -V2 --abr 128 %f %w.mp3",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"mimetypes": [
@@ -250,6 +271,7 @@
 					"type": "command",
 					"label": "Convert to mp3 - 192 kbps",
 					"command_line": "lame -V2 --abr 192 %f %w.mp3",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"mimetypes": [
@@ -260,6 +282,7 @@
 					"type": "command",
 					"label": "Convert to mp3 - 256 kbps",
 					"command_line": "lame -V2 --abr 256 %f %w.mp3",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"mimetypes": [
@@ -271,7 +294,8 @@
 		{
 			"type": "command",
 			"label": "📄 New file...",
-			"command_line": "FN=$(zenity --entry --text \"Enter file name\"  --width 300) && touch \"${FN}\"",
+			"command_line": "FN=$(zenity --entry --text \"Enter file name\"  --width 300) && touch ${FN}",
+			"use_v1_interpolation": false,
 			"cwd": "%f",
 			"use_shell": true,
 			"max_items": 1,
@@ -284,6 +308,7 @@
 			"type": "command",
 			"label": "▶️◀️ Resize 1200px",
 			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"1200x1200>\" %d/%w-1200.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"1200>\" -path %d/resized_images %f; fi",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -294,6 +319,7 @@
 			"type": "command",
 			"label": "▶️◀️ Resize 1500px",
 			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"1500x1500>\" %d/%w-1500.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"1500>\" -path %d/resized_images %f; fi",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -304,6 +330,7 @@
 			"type": "command",
 			"label": "▶️◀️ Resize 2000px",
 			"command_line": "if [ %c -eq 1 ]; then convert %f -resize \"2000x2000>\" %d/%w-2000.%x; else rm -rf %d/resized_images; mkdir %d/resized_images; mogrify -resize \"2000>\" -path %d/resized_images %f; fi",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [
@@ -314,6 +341,7 @@
 			"type": "command",
 			"label": "▶️◀️ Resize 70%",
 			"command_line": "convert %f -resize \"70%\" %d/%w-70pct.%x",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"max_items": 1,
 			"cwd": "%d",
@@ -325,6 +353,7 @@
 			"type": "command",
 			"label": "▶️◀️ Resize 50%",
 			"command_line": "convert %f -resize \"50%\" %d/%w-50pct.%x",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"max_items": 1,
 			"cwd": "%d",
@@ -340,6 +369,7 @@
 					"type": "command",
 					"label": "Remove \"node modules\" dirs",
 					"command_line": "find %d -name node_modules -type d -prune -exec rm -rf '{}' +",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
 					"max_items": 1,
@@ -351,6 +381,7 @@
 					"type": "command",
 					"label": "Execute command here",
 					"command_line": "$(zenity --entry --text \"Enter command\" --title \"execute command in %f\" --width 800)",
+					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%f",
 					"max_items": 1,
@@ -362,6 +393,7 @@
 					"type": "command",
 					"label": "Start HTTP server here",
 					"command_line": "gnome-terminal -t \"HTTP Server on %f\" -- python3 -m http.server --bind 127.0.0.1",
+					"use_v1_interpolation": false,
 					"cwd": "%f",
 					"max_items": 1,
 					"mimetypes": [
@@ -378,24 +410,28 @@
 					"type": "command",
 					"label": "Copy full path (~/truc.pdf)",
 					"command_line": "echo -n %F | xclip -f -selection primary | xclip -selection clipboard",
+					"use_v1_interpolation": false,
 					"use_shell": true
 				},
 				{
 					"type": "command",
 					"label": "Copy basename (truc.pdf)",
 					"command_line": "echo -n %B | xclip -f -selection primary | xclip -selection clipboard",
+					"use_v1_interpolation": false,
 					"use_shell": true
 				},
 				{
 					"type": "command",
 					"label": "Copy path only (~/)",
 					"command_line": "echo -n %D | xclip -f -selection primary | xclip -selection clipboard",
+					"use_v1_interpolation": false,
 					"use_shell": true
 				},
 				{
 					"type": "command",
 					"label": "Copy URI",
 					"command_line": "echo -n %U | xclip -f -selection primary | xclip -selection clipboard",
+					"use_v1_interpolation": false,
 					"use_shell": true
 				}
 			]
@@ -404,6 +440,7 @@
 			"type": "command",
 			"label": "📥 Move last downloaded file here",
 			"command_line": "mv \"$(/bin/ls -tpd ~/Téléchargements/* | grep -v '/$' | head -n 1)\" %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"max_items": 1,
 			"filetypes": [

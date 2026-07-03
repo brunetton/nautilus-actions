@@ -148,7 +148,7 @@
 		{
 			"type": "command",
 			"label": "🎥 Recompress to h264",
-			"command_line": "ffmpeg -i %f -c:v libx264 -crf 23 -c:a copy %w-h24.%x",
+			"command_line": "ffmpeg -i %f -c:v libx264 -crf 23 -c:a copy %w-h264.%x",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",

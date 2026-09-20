@@ -496,6 +496,18 @@
 		},
 		{
 			"type": "command",
+			"label": "🔗 Create symlink here",
+			"command_line": "ln -s \"$(xclip -o -selection clipboard)\" %f",
+			"use_v1_interpolation": false,
+			"use_shell": true,
+			"cwd": "%f",
+			"max_items": 1,
+			"filetypes": [
+				"directory"
+			]
+		},
+		{
+			"type": "command",
 			"label": "📥 Move last downloaded file here",
 			"command_line": "mv \"$(/bin/ls -tpd ~/Téléchargements/* | grep -v '/$' | head -n 1)\" %f",
 			"use_v1_interpolation": false,

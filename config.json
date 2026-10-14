@@ -127,7 +127,8 @@
 		{
 			"type": "command",
 			"label": "🎥 Extract sound from video",
-			"command_line": "~/dev/nemo-actions/scripts/extract_sound.py %f",
+			"command_line": "~/dev/dotfiles/nautilus-actions/actions-partagees/scripts/extract_sound.py %f",
+			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
 			"mimetypes": [

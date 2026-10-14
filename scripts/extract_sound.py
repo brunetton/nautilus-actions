@@ -58,7 +58,7 @@ if re.search('pcm_.*', audio_format):
 out_filepath = in_filepath.with_suffix('.' + audio_format)
 
 # Do the convertion, mapping the selected audio stream
-command = 'ffmpeg -i "{in_file}" -map 0:a:{stream} -c:a copy "{out_file}" -y'.format(
+command = 'nice -n 19 ffmpeg -i "{in_file}" -map 0:a:{stream} -c:a copy "{out_file}" -y'.format(
     in_file = in_filepath,
     stream = audio_stream_index,
     out_file = out_filepath

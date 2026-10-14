@@ -138,7 +138,7 @@
 		{
 			"type": "command",
 			"label": "🎥 Convert to mp4",
-			"command_line": "ffmpeg -i %f -c:copy %w.mp4",
+			"command_line": "nice -n 19 ffmpeg -i %f -c:copy %w.mp4",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
@@ -149,7 +149,7 @@
 		{
 			"type": "command",
 			"label": "🎥 Recompress to h264",
-			"command_line": "ffmpeg -i %f -c:v libx264 -crf 23 -c:a copy %w-h264.%x",
+			"command_line": "nice -n 19 ffmpeg -i %f -c:v libx264 -crf 23 -c:a copy %w-h264.%x",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
@@ -160,7 +160,7 @@
 		{
 			"type": "command",
 			"label": "🔇 Remove audio (keep original file)",
-			"command_line": "ffmpeg -i %f -an -c:v copy %w-silent.%x",
+			"command_line": "nice -n 19 ffmpeg -i %f -an -c:v copy %w-silent.%x",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
@@ -172,7 +172,7 @@
 		{
 			"type": "command",
 			"label": "🎥 Create GIF from video",
-			"command_line": "ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
+			"command_line": "nice -n 19 ffmpeg -i %f -vf \"fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" %w.gif",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
@@ -205,7 +205,7 @@
 		{
 			"type": "command",
 			"label": "➡️ Convert to WAV",
-			"command_line": "out=%w.wav; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+			"command_line": "out=%w.wav; rm -f \"$out\"; nice -n 19 ffmpeg -i %f -b:a 96k \"$out\"",
 			"use_v1_interpolation": false,
 			"use_shell": true,
 			"cwd": "%d",
@@ -220,7 +220,7 @@
 				{
 					"type": "command",
 					"label": "Convert audio to AAC 96k",
-					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 96k \"$out\"",
+					"command_line": "out=%w.aac; rm -f \"$out\"; nice -n 19 ffmpeg -i %f -b:a 96k \"$out\"",
 					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
@@ -232,7 +232,7 @@
 				{
 					"type": "command",
 					"label": "Convert audio to AAC 128k",
-					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 128k \"$out\"",
+					"command_line": "out=%w.aac; rm -f \"$out\"; nice -n 19 ffmpeg -i %f -b:a 128k \"$out\"",
 					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",
@@ -244,7 +244,7 @@
 				{
 					"type": "command",
 					"label": "Convert audio to AAC 192k",
-					"command_line": "out=%w.aac; rm -f \"$out\"; ffmpeg -i %f -b:a 192k \"$out\"",
+					"command_line": "out=%w.aac; rm -f \"$out\"; nice -n 19 ffmpeg -i %f -b:a 192k \"$out\"",
 					"use_v1_interpolation": false,
 					"use_shell": true,
 					"cwd": "%d",

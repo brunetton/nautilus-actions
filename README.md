@@ -39,6 +39,12 @@ This file groups similar actions by their base label. When an action applies onl
 
 ## Install
 
+- install the dependencies used by the actions:
+
+    ```bash
+    sudo apt install imagemagick poppler-utils libimage-exiftool-perl ffmpeg flac lame zenity xclip gnome-terminal
+    ```
+
 - install [actions-for-nautilus](https://github.com/bassmanitram/actions-for-nautilus)
 - clone this repo
 - make a link from actions-for-nautilus config file location to this project `config.json` file:

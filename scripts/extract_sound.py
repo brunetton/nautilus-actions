@@ -14,7 +14,6 @@ Options:
 """
 
 
-import os
 import re
 import subprocess
 import sys
@@ -34,9 +33,7 @@ def execute(command):
     return cmnd_output  # type: ignore
 
 args = docopt(__doc__.format(self_filename=Path(__file__).name))
-in_complete_filename = args['<file>']
-path = os.path.dirname(in_complete_filename)
-in_filename_without_ext = os.path.splitext(os.path.basename(in_complete_filename))[0]
+in_filepath = Path(args['<file>'])
 
 # audio stream index to extract (from -s / --audio-stream)
 try:
@@ -45,10 +42,10 @@ except (TypeError, ValueError):
     print("Error: --audio-stream must be an integer (got {!r})".format(args['--audio-stream']))
     sys.exit(1)
 
-assert os.path.isfile(in_complete_filename)
+assert in_filepath.is_file(), "Input file does not exist: {}".format(in_filepath)
 
 # get audio stream type
-audio_format = execute(f'ffprobe -v error -select_streams a:{audio_stream_index} -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "{in_complete_filename}"')
+audio_format = execute(f'ffprobe -v error -select_streams a:{audio_stream_index} -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "{in_filepath}"')
 audio_format = audio_format.strip().decode("utf-8")
 if audio_format == "":
     raise Exception("No audio found in file")
@@ -58,10 +55,12 @@ print("-> audio_format: {}".format(audio_format))
 if re.search('pcm_.*', audio_format):
     audio_format = "wav"
 
+out_filepath = in_filepath.with_suffix('.' + audio_format)
+
 # Do the convertion, mapping the selected audio stream
 command = 'ffmpeg -i "{in_file}" -map 0:a:{stream} -c:a copy "{out_file}" -y'.format(
-    in_file = in_complete_filename,
+    in_file = in_filepath,
     stream = audio_stream_index,
-    out_file = os.path.join(path, in_filename_without_ext + '.' + audio_format)
+    out_file = out_filepath
 )
 execute(command)

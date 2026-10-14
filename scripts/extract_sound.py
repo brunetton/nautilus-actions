@@ -50,13 +50,17 @@ audio_format = execute(f'ffprobe -v error -select_streams a:{audio_stream_index}
 audio_format = audio_format.strip().decode("utf-8")
 if audio_format == "":
     raise Exception("No audio found in file")
-print("-> audio_format: {}".format(audio_format))
+# get audio region code
+audio_region = execute(f'ffprobe -v error -select_streams a:{audio_stream_index} -show_entries stream_tags=language -of default=noprint_wrappers=1:nokey=1 "{in_filepath}"')
+audio_region = audio_region.strip().decode("utf-8")
+print(f"-> audio_format: {audio_format} {"" if not audio_region else f'[{audio_region}]'}")
 
 # WAV formats special case
 if re.search('pcm_.*', audio_format):
     audio_format = "wav"
 
-out_filepath = Path(f"{args['--out']}.{audio_format}") if args['--out'] else in_filepath.with_suffix('.' + audio_format)
+audio_region_str = f" - [{audio_region}]" if audio_region else ""
+out_filepath = Path(f"{args['--out']}.{audio_format}") if args['--out'] else Path(f"{in_filepath.stem}{audio_region_str}.{audio_format}")
 
 # Do the convertion, mapping the selected audio stream
 command = 'nice -n 19 ffmpeg -i "{in_file}" -map 0:a:{stream} -c:a copy "{out_file}" -y'.format(

@@ -11,6 +11,7 @@ Usage:
 
 Options:
     -s --audio-stream <n>        force audio stream [default: 0]
+    -o --out <filename>          output filename (without extension) (default: <input_filename>)
 """
 
 
@@ -55,7 +56,7 @@ print("-> audio_format: {}".format(audio_format))
 if re.search('pcm_.*', audio_format):
     audio_format = "wav"
 
-out_filepath = in_filepath.with_suffix('.' + audio_format)
+out_filepath = Path(f"{args['--out']}.{audio_format}") if args['--out'] else in_filepath.with_suffix('.' + audio_format)
 
 # Do the convertion, mapping the selected audio stream
 command = 'nice -n 19 ffmpeg -i "{in_file}" -map 0:a:{stream} -c:a copy "{out_file}" -y'.format(

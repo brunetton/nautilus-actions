@@ -47,6 +47,17 @@
 		},
 		{
 			"type": "command",
+			"label": "🪄 Convert to webp - 2ko",
+			"command_line": "mogrify -format webp -strip -define webp:method=6 -define webp:target-size=2000 %f",
+			"use_v1_interpolation": false,
+			"use_shell": true,
+			"cwd": "%d",
+			"mimetypes": [
+				"image/*"
+			]
+		},
+		{
+			"type": "command",
 			"label": "🪄 Convert to jpg - 80%",
 			"command_line": "mogrify -format jpg -quality 80 %f",
 			"use_v1_interpolation": false,
